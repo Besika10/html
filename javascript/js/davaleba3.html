@@ -1,0 +1,144 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            margin-bottom: 5px;
+        }
+
+        li button {
+            font-size: 8px;
+            color: rgb(52, 54, 54);
+            margin-left: 20px;
+        }
+
+        .bluetext {
+            color: blue;
+        }
+
+        .counter1 {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .counter {
+            color: rgb(199, 173, 28);
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Task list</h1>
+
+    <form action="">
+        <input type="text" class="task-input">
+        <button class="submit" type="submit">Add Task</button>
+    </form>
+
+    <ul data-color="blue">
+
+    </ul>
+
+    <p class="counter1">
+        სულ დასრულებულია : <span class="counter">0</span> დავალება
+    </p>
+    <script>
+        fetch('', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: 'besikaaaa' })
+        })
+
+        let button = document.querySelector('.submit');
+        let input = document.querySelector('.task-input');
+        let ul = document.querySelector('ul');
+        let form = document.querySelector('form');
+        var counter = 0;
+        form.addEventListener('submit', (event) => {
+            //input value
+            event.preventDefault();
+            let value = input.value;
+            console.log(value);
+
+            if (value.length == 0) {
+                return;
+            }
+            //add input value in ul list
+            let li = document.createElement('li');
+            let btn = document.createElement('button');
+            let span = document.createElement('span');
+            let checkbox = document.createElement('input');
+            // let p = document.createElement('p');
+            // let countNum = document.createElement('span');
+            // p.textContent = ''
+            checkbox.type = 'checkbox';
+            checkbox.name = 'checkbox';
+            checkbox.dataset.color = 'blue';
+            li.appendChild(checkbox);
+            li.appendChild(span);
+            span.textContent = value;
+            li.appendChild(btn);
+            btn.textContent = 'Delete';
+            ul.appendChild(li);
+            ul.style.listStyleType = 'none';
+
+
+            checkbox.addEventListener('change', (event) => {
+                if (checkbox.checked == true) {
+                    li.appendChild(span).style.color = event.target.dataset.color;
+                    li.appendChild(span).style.textDecoration = 'line-through';
+                    li.appendChild(btn).style.display = 'right';
+                    // count++;
+                    // document.querySelector('.counter').textContent = count;
+                    // console.log(count);
+                }
+                else if (checkbox.checked == false) {
+                    li.appendChild(span).style.color = 'black';
+                    li.appendChild(span).style.textDecoration = 'none';
+                    li.appendChild(btn).style.display = 'right';
+                }
+            })
+
+            btn.addEventListener('click', () => {
+                ul.removeChild(li);
+                if (checkbox.checked == true) {
+                    counter--;
+                    document.querySelector('.counter').textContent = counter;
+                }
+            });
+
+
+
+            var increment = function () {
+                if (checkbox.checked == true) {
+                    counter++;
+                    document.querySelector('.counter').textContent = counter;
+                    console.log(counter);
+                }
+                if (checkbox.checked == false) {
+                    counter--;
+                    document.querySelector('.counter').textContent = counter;
+                    console.log(counter);
+                }
+
+            }
+
+            checkbox.addEventListener('change', increment);
+
+
+            //clear input
+            input.value = '';
+            input.focus();
+        })
+
+    </script>
+</body>
+
+</html>

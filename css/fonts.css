@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Sri-TSCRegular';
+    src: url('../fonts/sri-tsc-webfont.eot');
+    src: url('../fonts/sri-tsc-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/sri-tsc-webfont.woff') format('woff'),
+         url('../fonts/sri-tsc-webfont.ttf') format('truetype'),
+         url('../fonts/sri-tsc-webfont.svg#Sri-TSCRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+   }
